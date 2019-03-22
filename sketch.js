@@ -5,7 +5,7 @@ var food;
 function setup() {
     createCanvas(scl*30,scl*30);
     s = new Snake();
-    frameRate(10);
+    frameRate(7);
     pickLocation();
 }
 
@@ -14,6 +14,7 @@ function pickLocation() {
     var rows = floor(height/scl);
     food = createVector(floor(random(cols)),floor(random(rows)));
     food.mult(scl);
+    frameRate(7+floor(0.3*s.total))
 }
 
 function draw() {
