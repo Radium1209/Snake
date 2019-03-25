@@ -1,7 +1,7 @@
 function Snake() {
     this.x = 0;
     this.y = 0;
-    this.xspeed = 1;
+    this.xspeed = 0;
     this.yspeed = 0;
     this.total = 0;
     this.tail = [];
@@ -9,10 +9,18 @@ function Snake() {
     this.init = function() {
         this.x = 0;
         this.y = 0;
-        this.xspeed = 1;
+        this.xspeed = 0;
         this.yspeed = 0;
         this.total = 0;
         this.tail = [];
+        //frameRate(7);
+    }
+
+    this.GameOver = function()
+    {
+        var str="You got point "+this.total.toString()+"!";
+        alert(str);
+        this.init();
     }
 
     this.death = function() {
@@ -20,8 +28,7 @@ function Snake() {
             var pos = this.tail[i];
             var d = dist(this.x, this.y, pos.x, pos.y);
             if (d < 1) {
-                alert("Game Over!");
-                this.init();
+                this.GameOver();
             }
         }
     }
@@ -55,8 +62,7 @@ function Snake() {
         this.y = this.y + this.yspeed*scl;
 
         if (this.x < 0 || this.x > width-scl || this.y < 0 || this.y > height-scl) {
-            alert("Game Over!");
-            this.init();
+            this.GameOver();
         }
 
         //this.x = constrain(this.x, 0, width-scl);
